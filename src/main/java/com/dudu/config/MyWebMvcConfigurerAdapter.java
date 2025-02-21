@@ -19,7 +19,6 @@ import java.util.List;
 @Configuration
 public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
-
     /**
      * 配置静态访问资源
      * @param registry
@@ -51,9 +50,9 @@ public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // addPathPatterns 用于添加拦截规则
-        // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/toLogin","/login", "/book/**");
+        registry.addInterceptor(new MyInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/login");
         super.addInterceptors(registry);
     }
 
