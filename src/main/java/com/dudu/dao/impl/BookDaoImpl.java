@@ -48,7 +48,7 @@ public class BookDaoImpl implements BookDao {
     public Page queryBookList(Map<String, Object> params) {
         StringBuffer sql = new StringBuffer();
         sql.append("select * from book where 1=1");
-        Page page = new Page(sql.toString(), Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("rows").toString()), jdbcTemplate);
+        Page page = new Page(sql.toString(), Integer.parseInt(params.get("currentPage").toString()), Integer.parseInt(params.get("pageSize").toString()), jdbcTemplate);
         return page;
     }
 

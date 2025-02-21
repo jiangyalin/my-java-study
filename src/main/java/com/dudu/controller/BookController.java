@@ -21,12 +21,10 @@ public class BookController {
     private BookService bookService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public void queryBookList(HttpServletRequest request, HttpServletResponse response) {
-        String page = request.getParameter("page");
-        String rows = request.getParameter("rows");
+    public void queryBookList(@RequestParam(value = "currentPage", defaultValue = "1") String currentPage, @RequestParam(value = "pageSize", defaultValue = "10") String pageSize, HttpServletResponse response) {
         Map<String, Object> params = new HashMap<String,Object>();
-        params.put("page", page);
-        params.put("rows", rows);
+        params.put("currentPage", currentPage);
+        params.put("pageSize", pageSize);
         Page pageObj = bookService.queryBookList(params);
         List<Map<String, Object>> bookList = pageObj.getResultList();
         JSONObject json = new JSONObject();
