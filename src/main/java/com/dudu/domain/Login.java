@@ -1,28 +1,23 @@
 package com.dudu.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
-@Table(name = "user")
-public class User {
-
+@Table(name = "login")
+public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "loginId", foreignKey = @ForeignKey(name = "fk_user_login"))
-    private Login login;
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "password", nullable = false)
+    private String password;
 
     // 创建时间
     @Column(name = "createdAt", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -30,8 +25,8 @@ public class User {
     private Date createdAt;
 
     // 修改时间
-    @Column(name = "updatedAt", nullable = false)
-    @CreationTimestamp
+    @Column(name = "updatedAt", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @UpdateTimestamp
     private Date updatedAt;
 
     public Long getId() {
@@ -42,28 +37,20 @@ public class User {
         this.id = id;
     }
 
-    public Login getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(Login login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getCreatedAt() {

@@ -57,6 +57,7 @@ public class BookDaoImpl implements BookDao {
         return jdbcTemplate.update("delete from book where id in (" + ids + ")");
     }
 
+    @Override
     public Book update(String id, Book book) {
         jdbcTemplate.update("update book set name=?,author=?,publicationDate=?,copiesNumber=? where id = ?", new Object[]{book.getName(), book.getAuthor(), book.getPublicationDate(), book.getCopiesNumber(), id});
 

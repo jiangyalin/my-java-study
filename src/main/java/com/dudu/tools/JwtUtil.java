@@ -11,9 +11,10 @@ public class JwtUtil {
     private static final Key SECRET_KEY = Keys.hmacShaKeyFor("study-256-bit-secret-key-here-my-java".getBytes());
     private static final long EXPIRATION_TIME = 864_000_000;
 
-    public static String generateToken(String username) {
+    public static String generateToken(String username, Long userId) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("userId", userId)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SECRET_KEY)
                 .compact();

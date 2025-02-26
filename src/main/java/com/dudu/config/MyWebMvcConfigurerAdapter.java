@@ -13,9 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.List;
 
-/**
- * Created by tengj on 2017/3/13.
- */
 @Configuration
 public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
@@ -52,7 +49,8 @@ public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login");
+                .excludePathPatterns("/login")
+                .excludePathPatterns("/register");
         super.addInterceptors(registry);
     }
 

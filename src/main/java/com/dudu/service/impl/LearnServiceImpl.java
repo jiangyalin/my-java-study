@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-/**
- * Created by tengj on 2017/4/7.
- */
 @Service
 public class LearnServiceImpl implements LearnService {
 

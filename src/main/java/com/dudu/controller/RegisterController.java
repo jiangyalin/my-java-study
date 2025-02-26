@@ -7,22 +7,31 @@ import com.dudu.service.LoginService;
 import com.dudu.tools.JwtUtil;
 import com.dudu.tools.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/register")
+public class RegisterController {
     @Autowired
     private LoginService loginService;
 
     /**
-     * @deprecated 登录
+     * @deprecated 注册
      * */
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public void login(@RequestParam(value = "username", defaultValue = "") String username, @RequestParam(value = "password", defaultValue = "") String password, HttpServletResponse response) {
+    public void login(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+
         if (Objects.equals(username, "")) {
             JSONObject json = new JSONObject();
             json.put("code", 400);
@@ -45,22 +54,26 @@ public class LoginController {
         login.setUsername(username);
         login.setPassword(password);
 
-        User user = loginService.userLogin(login);
+        User user = new User();
+        user.setEmail(email);
+        user.setPhone(phone);
 
-        if (user == null) {
+        try {
+            User newUser = loginService.userRegister(login, user);
+
+            JSONObject json = new JSONObject();
+            json.put("code", 200);
+            json.put("data", newUser);
+            json.put("msg", "");
+
+            ServletUtil.createSuccessResponse(200, json, response);
+        } catch (RuntimeException e) {
             JSONObject json = new JSONObject();
             json.put("code", 500);
             json.put("data", new Object());
-            json.put("msg", "登录失败，请检查用户名和密码");
+            json.put("msg", e.getMessage());
+
             ServletUtil.createSuccessResponse(200, json, response);
-            return;
         }
-
-        String token = JwtUtil.generateToken(username, user.getId());
-
-        JSONObject json = new JSONObject();
-        json.put("data", token);
-
-        ServletUtil.createSuccessResponse(200, json, response);
     }
 }
