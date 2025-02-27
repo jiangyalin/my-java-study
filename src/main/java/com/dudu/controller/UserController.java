@@ -1,12 +1,9 @@
 package com.dudu.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dudu.domain.Book;
 import com.dudu.domain.User;
-import com.dudu.service.BookService;
 import com.dudu.service.UserService;
 import com.dudu.tools.JwtUtil;
-import com.dudu.tools.Page;
 import com.dudu.tools.ServletUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")

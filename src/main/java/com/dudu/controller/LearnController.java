@@ -21,9 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by tengj on 2017/3/13.
- */
 @Controller
 @RequestMapping("/learn")
 public class LearnController {

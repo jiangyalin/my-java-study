@@ -1,8 +1,5 @@
 package com.dudu.domain;
 
-/**
- * Created by tengj on 2017/3/7.
- */
 public class LearnResouce {
     private Long id;
     private String author;

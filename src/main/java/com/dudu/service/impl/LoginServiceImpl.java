@@ -5,14 +5,10 @@ import com.dudu.dao.UserDao;
 import com.dudu.domain.Login;
 import com.dudu.domain.User;
 import com.dudu.service.LoginService;
-import com.dudu.service.UserService;
-import com.dudu.tools.Page;
-import com.dudu.tools.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Map;
 
 @Service
 public class LoginServiceImpl implements LoginService {

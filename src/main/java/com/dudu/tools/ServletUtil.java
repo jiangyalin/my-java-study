@@ -20,19 +20,18 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class ServletUtil {
 
-	//服务器标识
+	// 服务器标识
 	private static String hostName = "";
 
-	//响应的ContentType内容
+	// 响应的ContentType内容
 	private static final String RESPONSE_CONTENTTYPE = "application/json";
 
-	//响应编码
+	// 响应编码
 	private static final String RESPONSE_CHARACTERENCODING = "utf-8";
 
-	//业务名称的缩写
+	// 业务名称的缩写
 	private static final String BIZ_NAME = "";
 
 	private static Logger log = Logger.getLogger(ServletUtil.class);

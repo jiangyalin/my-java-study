@@ -23,6 +23,15 @@ public class LoginController {
      * */
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public void login(@RequestParam(value = "username", defaultValue = "") String username, @RequestParam(value = "password", defaultValue = "") String password, HttpServletResponse response) {
+        // ErrorCode errorCode = ErrorCode.ADMIN_ACCOUNT_IS_NULL;
+        // System.out.println("errorCode");
+        // System.out.println(errorCode);
+        // System.out.println(errorCode.getCode());
+        // System.out.println(errorCode.getRes_code());
+        // System.out.println(errorCode.getMessage());
+        // System.out.println(errorCode.getHttpStatus());
+        // System.out.println("errorCode");
+
         if (Objects.equals(username, "")) {
             JSONObject json = new JSONObject();
             json.put("code", 400);

@@ -1,7 +1,6 @@
 package com.dudu.dao.impl;
 
 import com.dudu.dao.UserDao;
-import com.dudu.domain.Login;
 import com.dudu.domain.User;
 import com.dudu.tools.Page;
 import org.springframework.beans.factory.annotation.Autowired;

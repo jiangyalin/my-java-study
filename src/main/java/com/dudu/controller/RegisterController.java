@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.dudu.domain.Login;
 import com.dudu.domain.User;
 import com.dudu.service.LoginService;
-import com.dudu.tools.JwtUtil;
 import com.dudu.tools.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
