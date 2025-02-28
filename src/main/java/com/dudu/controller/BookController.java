@@ -31,7 +31,7 @@ public class BookController {
         json.put("rows", bookList);
         json.put("total", pageObj.getTotalPages());
         json.put("records", pageObj.getTotalRows());
-        ServletUtil.createSuccessResponse(200, json, response);
+        ServletUtil.createSuccessResponse(json, response);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -45,7 +45,7 @@ public class BookController {
         try {
             copiesNumber = Integer.parseInt(copiesNumberStr);
         } catch (NumberFormatException e) {
-            ServletUtil.createSuccessResponse(400, "册数类型不对", response);
+            ServletUtil.createSuccessResponse("册数类型不对", response);
             return;
         }
 
@@ -61,7 +61,7 @@ public class BookController {
 
         json.put("data", newBook);
 
-        ServletUtil.createSuccessResponse(200, json, response);
+        ServletUtil.createSuccessResponse(json, response);
     }
 
     @RequestMapping(value = "/{ids}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
@@ -71,7 +71,7 @@ public class BookController {
         JSONObject json = new JSONObject();
         json.put("data", index);
 
-        ServletUtil.createSuccessResponse(200, json, response);
+        ServletUtil.createSuccessResponse(json, response);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -86,7 +86,7 @@ public class BookController {
         try {
             copiesNumber = Integer.parseInt(copiesNumberStr);
         } catch (NumberFormatException e) {
-            ServletUtil.createSuccessResponse(400, "册数类型不对", response);
+            ServletUtil.createSuccessResponse("册数类型不对", response);
             return;
         }
 
@@ -101,6 +101,6 @@ public class BookController {
         JSONObject json = new JSONObject();
         json.put("data", data);
 
-        ServletUtil.createSuccessResponse(200, json, response);
+        ServletUtil.createSuccessResponse(json, response);
     }
 }

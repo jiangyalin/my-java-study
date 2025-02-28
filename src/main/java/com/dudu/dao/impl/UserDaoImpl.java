@@ -54,7 +54,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User info(Long id) {
-        return entityManager.find(User.class, id);
+        User user = null;
+        user = entityManager.find(User.class, id);
+        return user;
     }
 
     @Override

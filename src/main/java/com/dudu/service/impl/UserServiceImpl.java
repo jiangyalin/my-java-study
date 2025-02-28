@@ -27,7 +27,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User info(Long id) {
         User user = userDao.info(id);
-        user.setLogin(null);
+        if (user != null) {
+            user.setLogin(null);
+        }
         return user;
     }
 }

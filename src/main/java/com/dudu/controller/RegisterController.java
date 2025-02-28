@@ -21,7 +21,7 @@ public class RegisterController {
     private LoginService loginService;
 
     /**
-     * @deprecated 注册
+     * @description 注册
      * */
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public void login(HttpServletRequest request, HttpServletResponse response) {
@@ -35,7 +35,7 @@ public class RegisterController {
             json.put("code", 400);
             json.put("data", new Object());
             json.put("msg", "用户名不能为空");
-            ServletUtil.createSuccessResponse(200, json, response);
+            ServletUtil.createSuccessResponse(json, response);
             return;
         }
 
@@ -44,7 +44,7 @@ public class RegisterController {
             json.put("code", 400);
             json.put("data", new Object());
             json.put("msg", "密码不能为空");
-            ServletUtil.createSuccessResponse(200, json, response);
+            ServletUtil.createSuccessResponse(json, response);
             return;
         }
 
@@ -64,14 +64,14 @@ public class RegisterController {
             json.put("data", newUser);
             json.put("msg", "");
 
-            ServletUtil.createSuccessResponse(200, json, response);
+            ServletUtil.createSuccessResponse(json, response);
         } catch (RuntimeException e) {
             JSONObject json = new JSONObject();
             json.put("code", 500);
             json.put("data", new Object());
             json.put("msg", e.getMessage());
 
-            ServletUtil.createSuccessResponse(200, json, response);
+            ServletUtil.createSuccessResponse(json, response);
         }
     }
 }

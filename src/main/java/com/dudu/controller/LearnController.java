@@ -51,7 +51,7 @@ public class LearnController {
         jo.put("rows", learnList);
         jo.put("total", pageObj.getTotalPages());
         jo.put("records", pageObj.getTotalRows());
-        ServletUtil.createSuccessResponse(200, jo, response);
+        ServletUtil.createSuccessResponse(jo, response);
     }
     /**
      * 新添教程
@@ -67,19 +67,19 @@ public class LearnController {
         if(StringUtil.isNull(author)){
             result.put("message","作者不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         if(StringUtil.isNull(title)){
             result.put("message","教程名称不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         if(StringUtil.isNull(url)){
             result.put("message","地址不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         LearnResouce learnResouce = new LearnResouce();
@@ -95,7 +95,7 @@ public class LearnController {
             result.put("message","教程信息添加失败!");
             result.put("flag",false);
         }
-        ServletUtil.createSuccessResponse(200, result, response);
+        ServletUtil.createSuccessResponse(result, response);
     }
     /**
      * 修改教程
@@ -113,19 +113,19 @@ public class LearnController {
         if(StringUtil.isNull(author)){
             result.put("message","作者不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         if(StringUtil.isNull(title)){
             result.put("message","教程名称不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         if(StringUtil.isNull(url)){
             result.put("message","地址不能为空!");
             result.put("flag",false);
-            ServletUtil.createSuccessResponse(200, result, response);
+            ServletUtil.createSuccessResponse(result, response);
             return;
         }
         learnResouce.setAuthor(author);
@@ -140,7 +140,7 @@ public class LearnController {
             result.put("message","教程信息修改失败!");
             result.put("flag",false);
         }
-        ServletUtil.createSuccessResponse(200, result, response);
+        ServletUtil.createSuccessResponse(result, response);
     }
     /**
      * 删除教程
@@ -162,6 +162,6 @@ public class LearnController {
             result.put("message","教程信息删除失败!");
             result.put("flag",false);
         }
-        ServletUtil.createSuccessResponse(200, result, response);
+        ServletUtil.createSuccessResponse(result, response);
     }
 }
