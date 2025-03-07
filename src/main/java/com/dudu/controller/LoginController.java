@@ -7,6 +7,8 @@ import com.dudu.service.LoginService;
 import com.dudu.tools.ErrorCode;
 import com.dudu.tools.JwtUtil;
 import com.dudu.tools.ServletUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +17,12 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/login")
+@Api(tags = "示例 API")
 public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    /**
-     * 登录
-     * */
+    @ApiOperation(value = "登录", notes = "返回一个简单的问候信息")
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public void login(@RequestParam(value = "username", defaultValue = "") String username, @RequestParam(value = "password", defaultValue = "") String password, HttpServletResponse response) {
         if (Objects.equals(username, "")) {
