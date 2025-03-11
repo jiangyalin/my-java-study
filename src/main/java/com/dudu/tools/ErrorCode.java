@@ -11,6 +11,7 @@ public enum ErrorCode {
 	MODIFY_FAIL(400,"修改失败!"),
 	USERNAME_IS_NULL(400,"用户名为空!"),
 	PWD_IS_NULL(400,"密码为空!"),
+	PARAMETER_IS_NULL(470,"参数为空"),
 	PARAMETER_ERROR(480,"参数错误!"),
 	USER_OR_PWD_ERROR(490, "用户名或密码错误!");
 
