@@ -21,7 +21,6 @@ public class CalculateUtil {
 	
 	/**
 	 * 取某个范围的任意数
-	 * @param min
 	 * @param max
 	 * @return
 	 */

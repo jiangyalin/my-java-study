@@ -10,6 +10,9 @@ public class UserInfoResponseDto {
     @ApiModelProperty(value = "用户id")
     private Long id;
 
+    @ApiModelProperty(value = "昵称")
+    private String nickName;
+
     @ApiModelProperty(value = "邮箱")
     private String email;
 
@@ -28,6 +31,14 @@ public class UserInfoResponseDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getEmail() {

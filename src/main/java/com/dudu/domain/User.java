@@ -17,6 +17,9 @@ public class User {
     @JoinColumn(name = "loginId", foreignKey = @ForeignKey(name = "fk_user_login"))
     private Login login;
 
+    @Column(name = "nickName")
+    private String nickName;
+
     @Column(name = "email")
     private String email;
 
@@ -55,6 +58,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getPhone() {

@@ -22,11 +22,11 @@ public class LoginController {
 
     @ApiOperation(value = "登录", notes = "通过用户名和密码登录")
     @PostMapping(value = "", produces = "application/json;charset=UTF-8")
-    public Result<String> login(@ApiParam(value = "登录请求参数", required = true) @Valid @RequestBody LoginDto login) {
+    public Result<String> login(@ApiParam(value = "登录请求参数", required = true) @Valid @RequestBody LoginDto loginDto) {
 
         Login newLogin = new Login();
-        newLogin.setUsername(login.getUsername());
-        newLogin.setPassword(login.getPassword());
+        newLogin.setUsername(loginDto.getUsername());
+        newLogin.setPassword(loginDto.getPassword());
 
         User user = loginService.userLogin(newLogin);
 
@@ -34,7 +34,7 @@ public class LoginController {
             return Result.error(ResultStatus.REQUEST_ERROR, "用户名或密码错误");
         }
 
-        String token = JwtUtil.generateToken(login.getUsername(), user.getId());
+        String token = JwtUtil.generateToken(loginDto.getUsername(), user.getId());
         return Result.ok(token);
     }
 }
