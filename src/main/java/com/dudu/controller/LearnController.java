@@ -46,11 +46,10 @@ public class LearnController {
         params.put("author", author);
         params.put("title", title);
         Page pageObj =learnService.queryLearnResouceList(params);
-        List<Map<String, Object>> learnList=pageObj.getResultList();
+        List<Map<String, Object>> learnList=pageObj.getList();
         JSONObject jo=new JSONObject();
         jo.put("rows", learnList);
-        jo.put("total", pageObj.getTotalPages());
-        jo.put("records", pageObj.getTotalRows());
+        jo.put("total", pageObj.getTotal());
         ServletUtil.createSuccessResponse(jo, response);
     }
     /**

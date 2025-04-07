@@ -26,11 +26,10 @@ public class BookController {
         params.put("currentPage", currentPage);
         params.put("pageSize", pageSize);
         Page pageObj = bookService.queryBookList(params);
-        List<Map<String, Object>> bookList = pageObj.getResultList();
+        List<Map<String, Object>> bookList = pageObj.getList();
         JSONObject json = new JSONObject();
         json.put("rows", bookList);
-        json.put("total", pageObj.getTotalPages());
-        json.put("records", pageObj.getTotalRows());
+        json.put("total", pageObj.getTotal());
         ServletUtil.createSuccessResponse(json, response);
     }
 

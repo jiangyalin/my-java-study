@@ -2,6 +2,7 @@ package com.dudu.service.impl;
 
 import com.dudu.dao.UserDao;
 import com.dudu.domain.User;
+import com.dudu.dto.request.UserListDto;
 import com.dudu.service.UserService;
 import com.dudu.tools.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    public Page queryUserList(Map<String, Object> params) {
-        return this.userDao.queryUserList(params);
+    public Page queryUserList(UserListDto userListDto) {
+        return this.userDao.queryUserList(userListDto);
     }
 
     @Override

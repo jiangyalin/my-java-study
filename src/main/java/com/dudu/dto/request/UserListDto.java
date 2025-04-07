@@ -1,7 +1,6 @@
 package com.dudu.dto.request;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserListDto extends PageDto {
     // @NotEmpty(message = "页码不能为空")

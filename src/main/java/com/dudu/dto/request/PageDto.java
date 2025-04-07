@@ -1,30 +1,33 @@
 package com.dudu.dto.request;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
 
 public class PageDto {
-    @NotEmpty(message = "页码不能为空")
-    @ApiModelProperty(value = "页码", required = true, example = "1")
-    private String currentPage;
+    // @NotNull(message = "页码不能为空")
+    @Min(value = 1, message = "页码最小为1")
+    @ApiModelProperty(value = "页码", example = "1")
+    private Integer currentPage = 1;
 
-    @NotEmpty(message = "分页大小不能为空")
-    @ApiModelProperty(value = "分页大小", required = true, example = "10")
-    private String pageSize;
+    // @NotNull(message = "分页大小不能为空")
+    @Min(value = 1, message = "分页大小最小为1")
+    @ApiModelProperty(value = "分页大小", example = "10")
+    private Integer pageSize = 10;
 
-    public String getCurrentPage() {
+    public Integer getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(String currentPage) {
+    public void setCurrentPage(Integer currentPage) {
         this.currentPage = currentPage;
     }
 
-    public String getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(String pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 }

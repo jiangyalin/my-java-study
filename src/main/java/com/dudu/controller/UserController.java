@@ -77,19 +77,15 @@ public class UserController {
         }
     }
 
-    // @ApiOperation(value = "获取用户信息列表")
-    // @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    // public Result<Page> userList(
-    //         @ApiParam(value = "用户列表", required = true) @Valid @RequestBody UserListDto userListDto) {
-    //     try {
-    //
-    //         Map<String, Object> params = new HashMap<String,Object>();
-    //         params.put("currentPage", userListDto.getCurrentPage());
-    //         params.put("pageSize", userListDto.getPageSize());
-    //         Page list = userService.queryUserList(params);
-    //         return Result.ok(list);
-    //     } catch (RuntimeException e) {
-    //         return Result.of(ResultStatus.ERROR, e.getMessage());
-    //     }
-    // }
+    @ApiOperation(value = "获取用户信息列表")
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public Result<Page> userList(
+            @ApiParam(value = "用户列表", required = true) @Valid UserListDto userListDto) {
+        try {
+            Page list = userService.queryUserList(userListDto);
+            return Result.ok(list);
+        } catch (RuntimeException e) {
+            return Result.of(ResultStatus.ERROR, e.getMessage());
+        }
+    }
 }

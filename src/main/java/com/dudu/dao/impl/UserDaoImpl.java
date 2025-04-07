@@ -2,6 +2,7 @@ package com.dudu.dao.impl;
 
 import com.dudu.dao.UserDao;
 import com.dudu.domain.User;
+import com.dudu.dto.request.UserListDto;
 import com.dudu.tools.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -31,10 +32,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Page queryUserList(Map<String, Object> params) {
+    public Page queryUserList(UserListDto userListDto) {
         StringBuffer sql = new StringBuffer();
         sql.append("select * from user where 1=1");
-        Page page = new Page(sql.toString(), Integer.parseInt(params.get("currentPage").toString()), Integer.parseInt(params.get("pageSize").toString()), jdbcTemplate);
+        Page page = new Page(sql.toString(), Integer.parseInt(userListDto.getCurrentPage().toString()), Integer.parseInt(userListDto.getPageSize().toString()), jdbcTemplate);
         return page;
     }
 
