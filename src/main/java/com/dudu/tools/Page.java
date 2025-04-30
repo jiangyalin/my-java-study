@@ -1,14 +1,14 @@
 package com.dudu.tools;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tengj on 2017/4/11.
  */
-public class Page {
+public class Page<T> {
     // 一页显示的记录数
     private int numPerPage;
     // 记录总数
@@ -22,7 +22,7 @@ public class Page {
     // 结束行数
     private int lastIndex;
     // 结果集存放List
-    private List<Map<String, Object>> list;
+    private List<T> list;
 
 
     /**
@@ -33,11 +33,11 @@ public class Page {
      * @param numPerPage   每页记录数
      * @param jdbcTemplate jdbcTemplate实例
      */
-    public Page(String sql, int currentPage, int numPerPage, JdbcTemplate jdbcTemplate) {
+    public Page(String sql, int currentPage, int numPerPage, JdbcTemplate jdbcTemplate, Class<T> elementType) {
         if (jdbcTemplate == null) {
-            throw new IllegalArgumentException("Page.jdbcTemplate is null");
+            throw new IllegalArgumentException("Page.jdbcTemplate 为 空");
         } else if (sql == null || sql.equals("")) {
-            throw new IllegalArgumentException("Page.sql is empty");
+            throw new IllegalArgumentException("Page.sql 为 空");
         }
         // 设置每页显示记录数
         setNumPerPage(numPerPage);
@@ -60,11 +60,12 @@ public class Page {
         StringBuffer paginationSQL = new StringBuffer();
         paginationSQL.append(sql);
         paginationSQL.append(" limit " + startIndex + "," + lastIndex);
+        List<T> a = (List<T>) jdbcTemplate.query(paginationSQL.toString(), new BeanPropertyRowMapper<>(elementType));
         // 装入结果集
-        setResultList(jdbcTemplate.queryForList(paginationSQL.toString()));
+        setResultList(a);
     }
 
-    public List<Map<String, Object>> getList() {
+    public List<T> getList() {
         return list;
     }
 
@@ -98,7 +99,7 @@ public class Page {
         }
     }
 
-    private void setResultList(List<Map<String, Object>> list) {
+    private void setResultList(List<T> list) {
         this.list = list;
     }
 

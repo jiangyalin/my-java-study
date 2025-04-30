@@ -56,7 +56,7 @@ public class LearnDaoImpl  implements LearnDao{
         if(!StringUtil.isNull((String)params.get("title"))){
             sql.append(" and title like '%").append((String)params.get("title")).append("%'");
         }
-        Page page = new Page(sql.toString(), Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("rows").toString()), jdbcTemplate);
+        Page page = new Page(sql.toString(), Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("rows").toString()), jdbcTemplate, LearnResouce.class);
         return page;
     }
 }

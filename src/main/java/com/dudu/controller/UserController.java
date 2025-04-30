@@ -5,6 +5,7 @@ import com.dudu.base.domain.ResultStatus;
 import com.dudu.domain.User;
 import com.dudu.dto.request.UserListDto;
 import com.dudu.dto.response.UserInfoResponseDto;
+import com.dudu.dto.response.UserListResponseDto;
 import com.dudu.service.UserService;
 import com.dudu.tools.JwtUtil;
 import com.dudu.tools.Page;
@@ -79,10 +80,10 @@ public class UserController {
 
     @ApiOperation(value = "获取用户信息列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public Result<Page> userList(
+    public Result<Page<UserListResponseDto>> userList(
             @ApiParam(value = "用户列表", required = true) @Valid UserListDto userListDto) {
         try {
-            Page list = userService.queryUserList(userListDto);
+            Page<UserListResponseDto> list = userService.queryUserList(userListDto);
             return Result.ok(list);
         } catch (RuntimeException e) {
             return Result.of(ResultStatus.ERROR, e.getMessage());

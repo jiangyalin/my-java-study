@@ -2,6 +2,7 @@ package com.dudu.dao;
 
 import com.dudu.domain.User;
 import com.dudu.dto.request.UserListDto;
+import com.dudu.dto.response.UserListResponseDto;
 import com.dudu.tools.Page;
 
 import java.util.Map;
