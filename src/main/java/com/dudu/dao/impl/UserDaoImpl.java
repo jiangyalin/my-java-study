@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -54,12 +55,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User update(String id, User user) {
-        jdbcTemplate.update("update user set email=?,phone=? where id = ?", new Object[]{user.getEmail(), user.getPhone(), id});
-
-        String querySql = "select * from user where id = ?";
-
-        return jdbcTemplate.queryForObject(querySql, new BeanPropertyRowMapper<>(User.class), id);
+    public User update(User user) {
+        return entityManager.merge(user);
     }
 
     @Override

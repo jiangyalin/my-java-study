@@ -6,6 +6,7 @@ import com.dudu.domain.User;
 import com.dudu.dto.request.UserAddDto;
 import com.dudu.dto.request.UserDeleteDto;
 import com.dudu.dto.request.UserListDto;
+import com.dudu.dto.request.UserUpdateDto;
 import com.dudu.dto.response.OkResponseDto;
 import com.dudu.dto.response.UserInfoResponseDto;
 import com.dudu.dto.response.UserListResponseDto;
@@ -111,6 +112,26 @@ public class UserController {
                     .collect(Collectors.toList());
             userService.delete(longList);
             return Result.ok(new OkResponseDto());
+        } catch (RuntimeException e) {
+            return Result.of(ResultStatus.ERROR, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "编辑用户")
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public Result<UserInfoResponseDto> userUpdate(
+            @ApiParam(value = "编辑用户", required = true) @Valid @RequestBody UserUpdateDto userUpdateDto) {
+        try {
+            Long id = userUpdateDto.getId();
+            User user = userService.info(id);
+            user.setNickName(userUpdateDto.getNickName());
+            user.setPhone(userUpdateDto.getPhone());
+            user.setEmail(userUpdateDto.getEmail());
+
+            User newUser = userService.update(user);
+            UserInfoResponseDto dto = new UserInfoResponseDto();
+            BeanUtils.copyProperties(newUser, dto);
+            return Result.ok(dto);
         } catch (RuntimeException e) {
             return Result.of(ResultStatus.ERROR, e.getMessage());
         }

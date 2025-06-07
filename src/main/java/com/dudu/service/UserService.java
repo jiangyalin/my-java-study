@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService {
     Page<UserListResponseDto> queryUserList(UserListDto userListDto);
 
-    User update(String id, User user);
+    User update(User user);
 
     User info(Long id);
 
