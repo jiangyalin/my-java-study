@@ -8,7 +8,8 @@ import com.dudu.tools.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,5 +33,17 @@ public class UserServiceImpl implements UserService {
             user.setLogin(null);
         }
         return user;
+    }
+
+    @Override
+    @Transactional
+    public User add(User user) {
+        return userDao.add(user);
+    }
+
+    @Override
+    @Transactional
+    public int delete(List<Long> ids) {
+        return this.userDao.delete(ids);
     }
 }

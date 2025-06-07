@@ -3,7 +3,6 @@ package com.dudu.dao.impl;
 import com.dudu.dao.UserDao;
 import com.dudu.domain.User;
 import com.dudu.dto.request.UserListDto;
-import com.dudu.dto.response.UserListResponseDto;
 import com.dudu.tools.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
-import java.util.Map;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -47,8 +46,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int delete(String ids) {
-        return jdbcTemplate.update("delete from user where id in (" + ids + ")");
+    public int delete(List<Long> ids) {
+        String jpql = "delete from User u where u.id in :ids";
+        return entityManager.createQuery(jpql)
+                .setParameter("ids", ids)
+                .executeUpdate();
     }
 
     @Override

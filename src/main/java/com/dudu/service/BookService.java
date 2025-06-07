@@ -10,6 +10,5 @@ public interface BookService {
     Page queryBookList(Map<String, Object> params);
     Book add(Book book);
     int delete(String ids);
-
     Book update(String id, Book book);
 }
